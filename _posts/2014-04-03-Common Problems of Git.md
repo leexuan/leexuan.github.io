@@ -26,6 +26,7 @@ git stash pop
 git reset --hard
 git pull
 ```
+
 [参考链接](http://blog.csdn.net/iefreer/article/details/7679631)
 
 
