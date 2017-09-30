@@ -8,7 +8,14 @@ tag: 数据结构及算法
 在日常编程或者求职面试中，排序算法都是及其常见的。下文就常见排序算法【C语言版】进行总结，并比较。
 
 
-### 冒泡排序
+### 目录
+
+* [冒泡排序](#BubbleSort)
+* [选择排序](#SelectionSort)
+* [快速排序](#QuickSort)
+
+
+### <a name="BubbleSort"></a>冒泡排序
 ```
 // a[]: 待排序的数组
 // len: 待排序元素个数
@@ -42,7 +49,7 @@ void BubbleSort(int a[], int len, bool order)
 }
 ```
 
-### 选择排序
+### <a name="SelectionSort"></a>选择排序
 ```
 // a[]: 待排序的数组
 // len: 待排序元素个数
@@ -89,6 +96,75 @@ void SelectionSort(int a[], int len, bool order)
 	}
 }
 ```
+
+### <a name="QuickSort"></a>快速排序
+ &emsp;&emsp;快速排序简介：快速排序是采用`分治递归`的思想，对整体数据集进行分区和递归处理。
+ <br>
+ &emsp;&emsp;具体而言，分区处理要点：取某一个值作为基准值，与区域内所有数据进行比较，将比基准值大的数据置于一侧，比基准值小的数据置于另一侧，基准值则位于中央。然后，采用递归的思想，对这两个分区进行类似的处理，直至排序结束。
+
+&emsp;&emsp;举例说明：对于待排序序列：5 6 1 4 8 2 9 10 3。取基准值为第一个元素，即 key = 5，升序排列。则
+
+>* 第零次排序结果：<font color=red>5</font> 6 1 4 8 2 9 10 <font color=blue>3</font>
+>* 从右往左搜索，直至找到比 key 值小的元素为 <font color=blue>3</font>，然后将 <font color=blue>3</font> 置于 <font color=red>5</font> 的位置，则\\
+**第一次排序结果：3 6 1 4 8 2 9 10 <font color=red>3</font>**
+>* 从左往右搜索，直至找到比 key 值大的元素为 6，然后将 6 置于 <font color=red>3</font> 的位置，则\\
+**第二次排序结果：3 <font color=red>6</font> 1 4 8 <font color=blue>2</font> 9 10 6**
+>* 接着前面，`继续`从右往左搜索，直至找到比 key 值小的元素为 <font color=blue>2</font>，然后将 <font color=blue>2</font> 置于 <font color=red>6</font> 的位置，则\\
+**第三次排序结果：3 2 1 4 <font color=blue>8</font> <font color=red>2</font> 9 10 6**
+>* 接着前面，`继续`从左往右搜索，直至找到比 key 值大的元素为 <font color=blue>8</font>，然后将 <font color=blue>8</font> 置于 <font color=red>2</font> 的位置，则\\
+**第四次排序结果：3 2 1 4 <font color=red>8</font> 8 9 10 6**
+>* 然后，将 key 值置于 <font color=red>8</font> 的位置，如此完成第一轮的排序，其结果为：**3 2 1 4 5 8 9 10 6**。
+>* 接着，针对序列：**3 2 1 4** 和 **8 9 10 6** 进行同样的处理，按如此方式进行递归，直至排序完毕，即可完成最终的排序。
+
+
+快速排序对应 C 语言函数代码如下：
+```
+// Array[]: 待排序的数组首地址
+// low/high：对数组Array[low]~Array[high]这一段连续的元素进行快速排序
+// order: 1-升序排列；0-降序排列；
+void QuickSort(int Array[], int low, int high, bool order)
+{
+	int key;
+	int index_low = low, index_high = high;
+	if(index_low < index_high)
+	{
+		key = Array[index_low];
+		if(order)
+		{
+			while(index_low < index_high)
+			{
+				while(index_low < index_high && Array[index_high] >= key)index_high--;
+				Array[index_low] = Array[index_high];
+
+				while(index_low < index_high && Array[index_low] <= key)index_low++;
+				Array[index_high] = Array[index_low];
+			}
+		}
+		else
+		{
+			while(index_low < index_high)
+			{
+				while(index_low < index_high && Array[index_high] <= key)index_high--;
+				Array[index_low] = Array[index_high];
+
+				while(index_low < index_high && Array[index_low] >= key)index_low++;
+				Array[index_high] = Array[index_low];
+			}
+		}
+		Array[index_low] = key;
+	}
+
+	if(low < index_low - 1)
+	{
+		QuickSort(Array, low, index_low-1, order);
+	}
+	if(index_low + 1 < high)
+	{
+		QuickSort(Array, index_low+1, high, order);
+	}
+}
+```
+
 
 **有待补充**
 
