@@ -16,6 +16,7 @@ tag: 数据结构及算法
 
 
 ### <a name="BubbleSort"></a>冒泡排序
+ &emsp;&emsp;冒泡排序是一种简单、入门级的排序算法。其核心思想是：比较相邻的两个元素，如果与期望的排序顺序（升序/降序）不一致，则交换这两个元素；从左到右，遍历某一序列时，则最小或最大的元素经过交换则慢慢`浮`到序列的尾部。因此，这种排序方法叫做冒泡排序。
 ```
 // a[]: 待排序的数组
 // len: 待排序元素个数
@@ -50,6 +51,7 @@ void BubbleSort(int a[], int len, bool order)
 ```
 
 ### <a name="SelectionSort"></a>选择排序
+ &emsp;&emsp;选择排序是一种简答直观的排序算法。其原理如下：1）查找序列中最小（大）的一个元素，存放在序列的起始位置；2）再从剩余的序列中继续查找最小（大）的元素，然后放到剩余序列的起始位置。以此类推，直到所有元素均排列完毕。
 ```
 // a[]: 待排序的数组
 // len: 待排序元素个数
@@ -104,16 +106,16 @@ void SelectionSort(int a[], int len, bool order)
 
 &emsp;&emsp;举例说明：对于待排序序列：5 6 1 4 8 2 9 10 3。取基准值为第一个元素，即 key = 5，升序排列。则
 
->* 第零次排序结果：<font color=red>5</font> 6 1 4 8 2 9 10 <font color=blue>3</font>
->* 从右往左搜索，直至找到比 key 值小的元素为 <font color=blue>3</font>，然后将 <font color=blue>3</font> 置于 <font color=red>5</font> 的位置，则\\
-**第一次排序结果：3 6 1 4 8 2 9 10 <font color=red>3</font>**
->* 从左往右搜索，直至找到比 key 值大的元素为 6，然后将 6 置于 <font color=red>3</font> 的位置，则\\
-**第二次排序结果：3 <font color=red>6</font> 1 4 8 <font color=blue>2</font> 9 10 6**
->* 接着前面，`继续`从右往左搜索，直至找到比 key 值小的元素为 <font color=blue>2</font>，然后将 <font color=blue>2</font> 置于 <font color=red>6</font> 的位置，则\\
-**第三次排序结果：3 2 1 4 <font color=blue>8</font> <font color=red>2</font> 9 10 6**
->* 接着前面，`继续`从左往右搜索，直至找到比 key 值大的元素为 <font color=blue>8</font>，然后将 <font color=blue>8</font> 置于 <font color=red>2</font> 的位置，则\\
-**第四次排序结果：3 2 1 4 <font color=red>8</font> 8 9 10 6**
->* 然后，将 key 值置于 <font color=red>8</font> 的位置，如此完成第一轮的排序，其结果为：**3 2 1 4 5 8 9 10 6**。
+>* **第零次排序结果：<font color="red">5</font> 6 1 4 8 2 9 10 <font color="blue">3</font>**
+>* 从右往左搜索，直至找到比 key 值小的元素为 **<font color="blue">3</font>**，然后将 **<font color="blue">3</font>** 置于 **<font color="red">5</font>** 的位置，则\\
+**第一次排序结果：3 <font color="blue">6</font> 1 4 8 2 9 10 <font color="red">3</font>**
+>* 从左往右搜索，直至找到比 key 值大的元素为 **<font color="blue">6</font>**，然后将 **<font color="blue">6</font>** 置于 **<font color="red">3</font>** 的位置，则\\
+**第二次排序结果：3 <font color="red">6</font> 1 4 8 <font color="blue">2</font> 9 10 6**
+>* `接着前面，继续`从右往左搜索，直至找到比 key 值小的元素为 **<font color="blue">2</font>**，然后将 **<font color="blue">2</font> 置于 <font color="red">6</font>** 的位置，则\\
+**第三次排序结果：3 2 1 4 <font color="blue">8</font> <font color="red">2</font> 9 10 6**
+>* `接着前面，继续`从左往右搜索，直至找到比 key 值大的元素为 **<font color="blue">8</font>**，然后将 **<font color="blue">8</font> 置于 <font color="red">2</font>** 的位置，则\\
+**第四次排序结果：3 2 1 4 <font color="red">8</font> 8 9 10 6**
+>* 然后，将 key 值置于 **<font color="red">8</font>** 的位置，如此完成第一轮的排序，其结果为：**3 2 1 4 5 8 9 10 6**。
 >* 接着，针对序列：**3 2 1 4** 和 **8 9 10 6** 进行同样的处理，按如此方式进行递归，直至排序完毕，即可完成最终的排序。
 
 
