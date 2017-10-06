@@ -69,11 +69,13 @@ tag: 嵌入式基础
 #define		CLRBIT(n, m)	(n & (~(1 << (m-1))))
 ```
 
-### a 的第 m ~ n 位置位和清零
+### x 的第 m ~ n 位置位和清零
 
 ```
-#define		SETBIT(a, m, n)		(待补充)
-#define		CLRBIT(a, m, n)		(待补充)
+#define		SETBIT_1(x, m, n)		(x | ( ( (1<<n+1)-1) & (~0<<m) ) )
+#define		SETBIT_2(x, m, n)		(x | (~(~0<<n+1) & (~0<<m) ) )
+#define		CLRBIT_1(x, m, n)		(x & ( ( ~((1<<n+1)-1) | ~(~0<<m) ) ) )
+#define		CLRBIT_2(x, m, n)		(x & ( (~0<<n+1) | ( (1<<m)-1) ) )
 ```
 
 
