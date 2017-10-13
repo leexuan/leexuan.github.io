@@ -2,7 +2,7 @@
 layout: post
 title: C 语言之 scanf 个人解析
 date: 2014-04-08 
-tag: 工具使用
+tag: 基础知识
 ---
 
 一直以来，对 C 语言中格式化输入函数 scanf 的机理都很模糊。下面就个人对 scanf 的原理进行小结。
