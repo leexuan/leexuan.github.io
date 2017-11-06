@@ -13,16 +13,31 @@ tag: 机器学习
 
 数据学科竞赛：[DataCastle](http://www.pkbigdata.com/)、[天池](https://tianchi.aliyun.com/)。
 
-#### ML
+### 知识交叉
 
-　　**名词解释：** 机器学习(Machine Learning)是一门多领域交叉学科，涉及概率论、统计学、逼近论、凸分析、算法复杂度理论等多门学科。专门研究计算机怎样模拟或实现人类的学习行为，以获取新的知识或技能，重新组织已有的知识结构使之不断改善自身的性能。
-　　它是人工智能的核心，是使计算机具有智能的根本途径，其应用遍及人工智能的各个领域，它主要使用归纳、综合而不是演绎。
+![](/images/posts/2016-07-06-MachineLearning_outline/KnowledgeCross.png){:height="340px" width="360px"}
 
-#### DL
-　　**名词解释：** 深度学习（Deep Learning）是机器学习拉出的分支，它试图使用包含复杂结构或由多重非线性变换构成的多个处理层对数据进行高层抽象的算法。          
-　　深度学习是机器学习中表征学习方法。观测值（例如一幅图像）可以使用多种方式来表示，如每个像素强度值的矢量，或者更抽象地表示成一系列边、特定形状的区域等。而使用某些特定的表示方法更容易从实例中学习任务（例如，人脸识别或面部表情识别）。深度学习的好处是将用非监督式或半监督式的特征学习和分层特征提取的高效算法来替代手工获取特征。
+* Math & Statistics Knowledge: 数学相关知识，如高等数学、矩阵论、数理统计与概率等；
+* Hacking Skills: 编程相关的技能；
+* Substantive Expertise: 行业领域知识；
 
+### 机器学习分类
+![](/images/posts/2016-07-06-MachineLearning_outline/ClassificationForMachineLearningAlgorithm.png)
 
-<br>
+* 监督学习：例如用户点击/购买预测/房价预测；
+* 非监督学习：例如邮件/新闻聚类；
+* 强化学习：例如动态系统以及机器人控制；
 
-转载请注明：[潘柏信的博客](http://baixin) » [点击阅读原文](http://baixin.io/2016/07/MachineLearning_introduce/)
+### 机器学习算法一览表
+![](/images/posts/2016-07-06-MachineLearning_outline/ReviewofMLAlgorithm.png)
+
+### 机器学习相关学习资料
+* Christopher M. Bishop, Patern Recognition and Machine Learning, Springer-Verlag, 2006
+* Kevin P.Murphy, Machine Learning: A Probabilistic Perspective, The MIT Press, 2012
+* 李航， 统计学习方法，清华大学出版社，2012
+* 周志华，机器学习，清华大学出版社，2016
+* Machine Learning, Andrew Ng, coursera
+* 机器学习基石/技术，林轩田，coursera
+* ......
+
+不同资料难易程度不同，需要提前准备好相应基础。
