@@ -5,7 +5,7 @@ date: 2014-05-03
 tag: 数据结构及算法
 ---
 <!-- 法一：使用MathJax引擎制作数学公式
- --><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+ <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>-->
 <!-- 法二：使用Google Chart的服务器制作数学公式
 <img src="http://chart.googleapis.com/chart?cht=tx&chl= 在此插入Latex公式" style="border:none;">
 <img src="http://chart.googleapis.com/chart?cht=tx&chl= O(MN^3)" style="border:none;">
