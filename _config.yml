@@ -70,7 +70,3 @@ nav:
 gems: [jekyll-paginate,jekyll-sitemap]
 paginate: 20
 paginate_path: "page/:num/"
-
-
-# Processor
-markdown: maruku
