@@ -58,7 +58,7 @@ NSGA-II&ensp;主循环流程与一般的&ensp;GA&ensp;类似，在构建后代�
 * $$n_p=0$$&ensp;的个体归属于&ensp;$$\mathcal{F}_2$$；以此类推，直到所有个体处理完毕；
 
 其伪代码如下：
-![](/images/posts/2014-04-08-NSGA-II Algorithm/FastNondominatedSort.jpg){:height="550px" width="550px"}
+![](/images/posts/2014-04-08-NSGA-II Algorithm/FastNondominatedSort.jpg){:height="450px" width="550px"}
 
 上述算法的时间复杂度为$$O(M(2N)^2)$$。
 
