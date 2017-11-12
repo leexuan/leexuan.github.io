@@ -72,12 +72,5 @@ paginate: 20
 paginate_path: "page/:num/"
 
 
-# Build settings
-markdown: kramdown
-highlighter: rouge
-paginate: 5
-
-kramdown:
-   input: GFM
-   hard_wrap: false
-   # syntax_highlighter: rouge
+# Processor
+markdown: maruku
