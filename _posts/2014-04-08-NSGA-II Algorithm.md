@@ -21,7 +21,7 @@ tag: 数据结构及算法
 ### <a name="IntroductionofNSGA-II"></a>NSGA-II&ensp;简介
 &emsp;&emsp;Nondominated Sorting Genetic Algorithm II (NSGA-II)，又名&ensp;a nondominated sorting-based multiobjective EA (MOEA)，是由&ensp;NSGA&ensp;改进而来的，用于解决复杂的、多目标优化问题。该算法是&ensp;K-Deb&ensp;在&ensp;2002&ensp;年论文《A Fast and Elitist Multiobjective Genetic Algorithm: NSGA-II》中提出。
 
-&emsp;&emsp;针对&ensp;NSGA&ensp;中存在的问题：1）复杂度&ensp;$$O(MN^3)$$，$$M$$&ensp;为优化目标个数，$$N$$&ensp;为种群规模；2）非精英主义；3）需要指定共享参数，该参数将对种群的多样性产生很大的影响。与此相比，&ensp;NSGA-II&ensp;有几个特点：1）复杂度相对较低，为&ensp;$O(MN^2)$\\[(]O(MN^2)\\]&ensp;；2）维护了精英个体，即在迭代过程中保留了最为精英的部分；3）不需要用户指定类似共享参数之列的参数，减少用户主观指定的参数，NSGA-II中从新定义了拥挤距离代替共享参数。
+&emsp;&emsp;针对&ensp;NSGA&ensp;中存在的问题：1）复杂度&ensp;$$O(MN^3)$$，$$M$$&ensp;为优化目标个数，$$N$$&ensp;为种群规模；2）非精英主义；3）需要指定共享参数，该参数将对种群的多样性产生很大的影响。与此相比，&ensp;NSGA-II&ensp;有几个特点：1）复杂度相对较低，为&ensp;$O(MN^2)$\\[O(MN^2)\\]&ensp;；2）维护了精英个体，即在迭代过程中保留了最为精英的部分；3）不需要用户指定类似共享参数之列的参数，减少用户主观指定的参数，NSGA-II中从新定义了拥挤距离代替共享参数。
 
 ### <a name="DetailedIntroductionofNSGA-II"></a>NSGA-II&ensp;主流程
 NSGA-II&ensp;主循环流程与一般的&ensp;GA&ensp;类似，在构建后代种群是方法尤其独特性，其具体步骤为：
