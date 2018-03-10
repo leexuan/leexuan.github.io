@@ -21,7 +21,7 @@ BP&nbsp;神经网络的计算包括两个过程：正向计算和反向计算。
 * 反向计算：将实际输出与期望输出间的误差信号沿着网络连接通路反向传播，辅助修正各神经元的权重，以期误差信号最小。
 
 现在以一个典型的三层神经网络说明权重的计算调整过程。
-![hustlin_erd](/images/posts/2016-09-07-MachineLearning_BackPropagationNeuralNetworks/BPDemo.pdf){:height="240px" width="260px"}
+![hustlin_erd](/images/posts/2016-09-07-MachineLearning_BackPropagationNeuralNetworks/BPDemo.png){:height="240px" width="320px"}
 
 
 如图所示三层神经网络：输入层&nbsp;$Layer_1$、隐含层&nbsp;$Layer_2$、输出层&nbsp;$Layer_3$．输入层包括三个神经元，即输入为&nbsp;$\boldsymbol{x}=\lbrace x_1,x_2,x_3 \rbrace$，样本数据集为&nbsp;$$\mathcal{D}=\lbrace (\boldsymbol{x}_i,y_i)\rbrace$$，目标输出为&nbsp;$$o^{\text{T}}_1$$&nbsp;和&nbsp;$$o^{\text{T}}_2$$．$$\omega^{\text{L}_k}_{ij}$$&nbsp;为第&nbsp;$$k-1$$&nbsp;层的第&nbsp;$$i$$&nbsp;个神经元到第&nbsp;$$k$$&nbsp;层的第&nbsp;$$j$$&nbsp;个神经元之间的权重．$$\boldsymbol{b}^{\text{L}_k}=\{b^{\text{L}_k}_{i}\}$$&nbsp;为第&nbsp;$$k$$&nbsp;层神经元偏移量集合，$$b^{\text{L}_k}_{j}$$&nbsp;为第&nbsp;$$k$$&nbsp;层第&nbsp;$$i$$&nbsp;个神经元的偏移量．$$net^{\text{L}_k}_{i}$$&nbsp;表示第&nbsp;$$k$$&nbsp;层网络的第&nbsp;$$i$$&nbsp;个神经元的输入，$$o^{\text{L}_k}_{i}$$&nbsp;表示第&nbsp;$$k$$&nbsp;层网络的第&nbsp;$$i$$&nbsp;个神经元的输出，$$f^{\text{L}_k}_{i}(\cdot)$$&nbsp;表示第&nbsp;$k$&nbsp;层网络的第&nbsp;$i$&nbsp;个神经元的激活函数．
@@ -37,24 +37,21 @@ f'(x) = f(x)(1-f(x))
 
 对于&nbsp;$Layer_2$&nbsp;层第&nbsp;$j$&nbsp;个神经元的输出：
 
-$$net^{\text{L}_2}_{j} = \sum_{i=1}^{3}{\omega^{\text{L}_1}_{ij} \times x_i} + b^{\text{L}_2}_{j}$$
+$$ net^{\text{L}_2}_{j} = \sum_{i=1}^{3}{\omega^{\text{L}_1}_{ij} \times x_i} + b^{\text{L}_2}_{j} $$
 
 对于&nbsp;$Layer_3$&nbsp;层的第&nbsp;$j$&nbsp;个神经元的输出：
 
-\begin{equation}
-net^{\text{L}_3}_{j} = \sum_{i=1}^{2}{\omega^{\text{L}_2}_{ij} \times o^{\text{L}_2}_i} + b^{\text{L}_3}_{j}
-\end{equation}
+$$ net^{\text{L}_3}_{j} = \sum_{i=1}^{2}{\omega^{\text{L}_2}_{ij} \times o^{\text{L}_2}_i} + b^{\text{L}_3}_{j} $$
 
+ 第&nbsp;$$\text{L}_i$$&nbsp;层的第&nbsp;$$j$$&nbsp;个神经元的输出：
 
-第&nbsp;$\text{L}_i$&nbsp;层的第&nbsp;$j$&nbsp;个神经元的输出：
-\begin{equation}
-o^{\text{L}_i}_{j} = f^{\text{L}_i}_{j}{(net^{\text{L}_i}_j)} = \frac{1}{1+e^{-net^{\text{L}_i}_j}}
-\end{equation}
+ $$ o^{\text{L}_i}_{j} = f^{\text{L}_i}_{j}{(net^{\text{L}_i}_j)} = \frac{1}{1+e^{-net^{\text{L}_i}_j}} $$
+
 输出的总误差为：
-\begin{equation}
-E_{\text{Total}} = \frac{1}{2}\sum_{j=1}^{2}{(o^{\text{T}}_j - o^{\text{L}_3}_{j})^2} = \frac{1}{2}((o^{\text{T}}_1 - o^{\text{L}_3}_{1})^2 + (o^{\text{T}}_2 - o^{\text{L}_3}_{2})^2)
-\end{equation}
-是&nbsp;$o^{\text{L}_3}_{1}$&nbsp;和&nbsp;$o^{\text{L}_3}_{2}$&nbsp;的函数
+
+$$ E_{\text{Total}} = \frac{1}{2}\sum_{j=1}^{2}{(o^{\text{T}}_j - o^{\text{L}_3}_{j})^2} = \frac{1}{2}((o^{\text{T}}_1 - o^{\text{L}_3}_{1})^2 + (o^{\text{T}}_2 - o^{\text{L}_3}_{2})^2) $$
+
+是&nbsp;$$o^{\text{L}_3}_{1}$$&nbsp;和&nbsp;$$o^{\text{L}_3}_{2}$$&nbsp;的函数
 
 
 
