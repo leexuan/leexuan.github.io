@@ -1,0 +1,1 @@
+\begingroup \toks 0={macro:->\fill [black] (0.0,0.0) circle (2pt);}\xdef \tikzexternallastkey {\the \toks 0 }\endgroup %

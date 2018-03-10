@@ -1,0 +1,46 @@
+%!TEX root = ../IntrusionResponse.tex
+
+\begin{tikzpicture}[RecStyle/.style = {draw, fill = white, rectangle, rounded corners=0pt, text centered}] %,text width = 8em, minimum width = 6em, minimum height = 0.5cm,
+  % \draw (0, 0) to[grid with coordinates] (14, 10);
+
+  \node (A) [RecStyle, text width = 6em] at (1,12.375/4) {攻防成本收益\\[\LineSpreadofFigs]量化分析};
+  \node (B1) [RecStyle, text width = 6em] at (5,9.75/2) {攻击成本收益\\[\LineSpreadofFigs]量化};
+  \node (B2) [RecStyle, text width = 6em] at (5,2.625/2) {防御成本收益\\[\LineSpreadofFigs]量化};
+
+
+  \node (C1) [RecStyle] at (8.5,11.25/2) {攻击成本};
+  \node (C2) [RecStyle] at (8.5,8.25/2) {攻击收益};
+  \node (C3) [RecStyle] at (8.5,2.25) {防御成本};
+  \node (C4) [RecStyle] at (8.5,0.75/2) {防御收益};
+
+  \node (D1) [RecStyle] at (11.5,6.00) {操作成本};
+  \node (D2) [RecStyle] at (11.5,5.25) {风险成本};
+  % \node (D3) [RecStyle] at (11.5,4.50) {直接收益};
+  % \node (D4) [RecStyle] at (11.5,3.75) {间接受益};
+  \node (D5) [RecStyle] at (11.5,3.00) {操作成本};
+  \node (D6) [RecStyle] at (11.5,2.25) {负面成本};
+  \node (D7) [RecStyle] at (11.5,1.50) {残余成本};
+  % \node (D8) [RecStyle] at (11.5,0.75) {直接收益};
+  % \node (D9) [RecStyle] at (11.5,0.00) {间接收益};
+
+
+  \path [->, draw, line width=0.5pt] (A.east) -| +(0:0.8) |-  (B1.west);
+  \path [->, draw, line width=0.5pt] (A.east) -| +(0:0.8) |-  (B2.west);
+  \path [->, draw, line width=0.5pt] (B1.east) -| +(0:0.7) |-  (C1.west);
+  \path [->, draw, line width=0.5pt] (B1.east) -| +(0:0.7) |-  (C2.west);
+  \path [->, draw, line width=0.5pt] (B2.east) -| +(0:0.7) |-  (C3.west);
+  \path [->, draw, line width=0.5pt] (B2.east) -| +(0:0.7) |-  (C4.west);
+  \path [->, draw, line width=0.5pt] (C1.east) -| +(0:0.6) |-  (D1.west);
+  \path [->, draw, line width=0.5pt] (C1.east) -| +(0:0.6) |-  (D2.west);
+  % \path [->, draw, line width=0.5pt] (C2.east) -| +(0:0.6) |-  (D3.west);
+  % \path [->, draw, line width=0.5pt] (C2.east) -| +(0:0.6) |-  (D4.west);
+  \path [->, draw, line width=0.5pt] (C3.east) -| +(0:0.6) |-  (D5.west);
+  \path [->, draw, line width=0.5pt] (C3.east) -| +(0:0.6) |-  (D6.west);
+  \path [->, draw, line width=0.5pt] (C3.east) -| +(0:0.6) |-  (D7.west);
+  % \path [->, draw, line width=0.5pt] (C4.east) -| +(0:0.6) |-  (D8.west);
+  % \path [->, draw, line width=0.5pt] (C4.east) -| +(0:0.6) |-  (D9.west);
+
+
+
+
+\end{tikzpicture}

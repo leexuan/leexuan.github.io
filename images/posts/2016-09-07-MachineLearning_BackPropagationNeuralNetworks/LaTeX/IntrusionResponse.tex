@@ -1,0 +1,180 @@
+%!TEX program = pdflatex
+
+\documentclass[a4paper, UTF8, heading = true, scheme = chinese, linespread = 1.66, titlepage]{ctexart}
+
+\input{./Configuration}
+
+\begin{document}
+如图所示三层神经网络：输入层~$Layer_1$、隐含层~$Layer_2$、输出层~$Layer_3$．输入层包括三个神经元，即输入为~$\bm{x}=\{x_1,x_2,x_3\}$，样本数据集为~~$\mathcal{D}=\{(\bm{x}_i,y_i)\}$，目标输出为~$o^{\text{T}}_1$~和~$o^{\text{T}}_2$．$\omega^{\text{L}_k}_{ij}$~为第~$k-1$~层的第~$i$~个神经元到第~$k$~层的第~$j$~个神经元之间的权重．$\bm{b}^{\text{L}_k}=\{b^{\text{L}_k}_{i}\}$~为第~$k$~层神经元偏移量集合，$b^{\text{L}_k}_{j}$~为第~$k$~层第~$i$~个神经元的偏移量．$net^{\text{L}_k}_{i}$~表示第~$k$~层网络的第~$i$~个神经元的输入，$o^{\text{L}_k}_{i}$~表示第~$k$~层网络的第~$i$~个神经元的输出，$f^{\text{L}_k}_{i}(\cdot)$~表示第~$k$~层网络的第~$i$~个神经元的激活函数．
+
+
+
+假设激活函数为~sigmoid~函数：
+\begin{equation}
+f(x) = \frac{1}{1+e^{-x}}
+\end{equation}
+其导数为：
+\begin{equation}
+f'(x) = f(x)(1-f(x))
+\end{equation}
+
+
+对于~$Layer_2$~层第~$j$~个神经元的输出：
+\begin{equation}
+net^{\text{L}_2}_{j} = \sum_{i=1}^{3}{\omega^{\text{L}_1}_{ij} \times x_i} + b^{\text{L}_2}_{j}
+\end{equation}
+
+对于~$Layer_3$~层的第~$j$~个神经元的输出：
+\begin{equation}
+net^{\text{L}_3}_{j} = \sum_{i=1}^{2}{\omega^{\text{L}_2}_{ij} \times o^{\text{L}_2}_i} + b^{\text{L}_3}_{j}
+\end{equation}
+
+
+第~$\text{L}_i$~层的第~$j$~个神经元的输出：
+\begin{equation}
+o^{\text{L}_i}_{j} = f^{\text{L}_i}_{j}{(net^{\text{L}_i}_j)} = \frac{1}{1+e^{-net^{\text{L}_i}_j}}
+\end{equation}
+
+输出的总误差为：
+\begin{equation}
+E_{\text{Total}} = \frac{1}{2}\sum_{j=1}^{2}{(o^{\text{T}}_j - o^{\text{L}_3}_{j})^2} = \frac{1}{2}((o^{\text{T}}_1 - o^{\text{L}_3}_{1})^2 + (o^{\text{T}}_2 - o^{\text{L}_3}_{2})^2)
+\end{equation}
+是~$o^{\text{L}_3}_{1}$~和~$o^{\text{L}_3}_{2}$~的函数
+
+
+
+
+
+\section{$Layer_2$~与~$Layer_3$~间参数调整}
+调整~$Layer_2$~与~$Layer_3$~间的权重~$\omega^{\text{L}_2}_{ij}$
+\begin{align}
+\frac{\partial E_{\text{Total}}}{\partial \omega^{\text{L}_2}_{ij}}
+&=
+\frac{\partial E_{\text{Total}}}{\partial o^{\text{L}_3}_{j}} \cdot \frac{\partial o^{\text{L}_3}_{j}}{\partial net^{\text{L}_3}_{j}} \cdot \frac{\partial net^{\text{L}_3}_{j}}{\partial \omega^{\text{L}_2}_{ij}} \\
+&=
+-(o^{\text{T}}_{j} - o^{\text{L}_3}_{j}) \cdot f^{\text{L}_3}_{j}{(net^{\text{L}_3}_j)}(1 - f^{\text{L}_3}_{j}{(net^{\text{L}_3}_j)}) \cdot o^{\text{L}_2}_{i} \\
+&=
+-(o^{\text{T}}_{j} - o^{\text{L}_3}_{j}) \cdot o^{\text{L}_3}_{j}(1 - o^{\text{L}_3}_{j}) \cdot o^{\text{L}_2}_{i} \\
+\end{align}
+
+令~$\delta^{\text{L}_2}_{ij}$~表示~$Layer_2$~层第~$i$~个神经元与~$Layer_3$~层第~$j$~个神经元间权重的梯度项，则
+\begin{align}
+\delta^{\text{L}_2}_{ij} &= \frac{\partial E_{\text{Total}}}{\partial o^{\text{L}_3}_{j}} \cdot \frac{\partial o^{\text{L}_3}_{j}}{\partial net^{\text{L}_3}_{j}} \\
+&= -(o^{\text{T}}_{j} - o^{\text{L}_3}_{j}) \cdot o^{\text{L}_3}_{j}(1 - o^{\text{L}_3}_{j})
+\end{align}
+可以看出，~$Layer_2$~层第~$i$~个神经元与~$Layer_3$~层第~$j$~个神经元间权重的梯度项是与~$i$~无关的，故连接至~$Layer_3$~层第~$j$~个神经元相对应的权重的梯度向均为~$\delta^{\text{L}_2}_{ij}$，用~$\delta^{\text{L}_2}_{\cdot j}$~表示，
+\begin{equation}
+\delta^{\text{L}_2}_{\cdot j} = \delta^{\text{L}_2}_{ij} = -(o^{\text{T}}_{j} - o^{\text{L}_3}_{j}) \cdot o^{\text{L}_3}_{j}(1 - o^{\text{L}_3}_{j})
+\end{equation}
+
+则整体误差~$E_{\text{Total}}$~对~$\omega^{\text{L}_2}_{ij}$~的偏导数公式写作：
+\begin{equation}
+\frac{\partial E_{\text{Total}}}{\partial \omega^{\text{L}_2}_{ij}}
+= \delta^{\text{L}_2}_{\cdot j} \cdot o^{\text{L}_2}_{i}
+\end{equation}
+
+则权重~$\omega^{\text{L}_2}_{ij}$~的学习公式为：
+\begin{equation}
+\widehat{\omega}^{\text{L}_2}_{ij} = \omega^{\text{L}_2}_{ij} - \eta \cdot \frac{\partial E_{\text{Total}}}{\partial \omega^{\text{L}_2}_{ij}} 
+= \omega^{\text{L}_2}_{ij} - \eta \cdot \delta^{\text{L}_2}_{\cdot j} \cdot o^{\text{L}_2}_{i}
+\end{equation}
+$\eta$~为学习速率
+
+$Layer_3$~的第~$j$~个神经元的偏移量的梯度为
+\begin{align}
+\frac{\partial E_{\text{Total}}}{\partial b^{\text{L}_3}_{j}}
+&= \frac{\partial E_{\text{Total}}}{\partial o^{\text{L}_3}_{j}} \cdot \frac{\partial o^{\text{L}_3}_{j}}{\partial net^{\text{L}_3}_{j}} \cdot \frac{\partial net^{\text{L}_3}_{j}}{\partial b^{\text{L}_3}_{j}} \\
+&= -(o^{\text{T}}_{j} - o^{\text{L}_3}_{j}) \cdot f^{\text{L}_3}_{j}{(net^{\text{L}_3}_j)}(1 - f^{\text{L}_3}_{j}{(net^{\text{L}_3}_j)}) \cdot 1 \\
+&= -(o^{\text{T}}_{j} - o^{\text{L}_3}_{j}) \cdot o^{\text{L}_3}_{j}(1 - o^{\text{L}_3}_{j}) \\
+&= \delta^{\text{L}_2}_{\cdot j}
+\end{align}
+
+偏移~$b^{\text{L}_3}_{j}$~的学习公式为：
+\begin{equation}
+\hat{b}^{\text{L}_3}_{j} = b^{\text{L}_3}_{j} - \eta \cdot \frac{\partial E_{\text{Total}}}{\partial b^{\text{L}_3}_{j}} \\
+= b^{\text{L}_3}_{j} - \eta \cdot \delta^{\text{L}_2}_{\cdot j}
+\end{equation}
+
+例如，对于权重~$\omega^{\text{L}_2}_{11}$~的更新学习公式为：
+\begin{align}
+\widehat{\omega}^{\text{L}_2}_{11} &= \omega^{\text{L}_2}_{11} - \eta \cdot \frac{\partial E_{\text{Total}}}{\partial \omega^{\text{L}_2}_{ij}} \\
+&= \omega^{\text{L}_2}_{11} - \eta \cdot \delta^{\text{L}_2}_{11} \cdot o^{\text{L}_2}_{1} \\
+&= \omega^{\text{L}_2}_{11} - \eta \cdot \big(-(o^{\text{T}}_{1} - o^{\text{L}_3}_{1}) \cdot o^{\text{L}_3}_{1}(1 - o^{\text{L}_3}_{1})\big) \cdot o^{\text{L}_2}_{1} \\
+&= \omega^{\text{L}_2}_{11} + \eta \cdot (o^{\text{T}}_{1} - o^{\text{L}_3}_{1}) \cdot o^{\text{L}_3}_{1}(1 - o^{\text{L}_3}_{1}) \cdot o^{\text{L}_2}_{1} 
+\end{align}
+例如，对于偏移~$b^{\text{L}_3}_{1}$~的更新学习公式为：
+\begin{align}
+\hat{b}^{\text{L}_3}_{1} &= b^{\text{L}_3}_{1} - \eta \cdot \frac{\partial E_{\text{Total}}}{\partial b^{\text{L}_3}_{1}} \\
+&= b^{\text{L}_3}_{1} + \eta \cdot (o^{\text{T}}_{1} - o^{\text{L}_3}_{1}) \cdot o^{\text{L}_3}_{1}(1 - o^{\text{L}_3}_{1})
+\end{align}
+
+
+\section{$Layer_1$~与~$Layer_2$~间参数调整}
+调整~$Layer_1$~与~$Layer_2$~间的权重~$\omega^{\text{L}_1}_{ij}$
+\begin{align}
+\frac{\partial E_{\text{Total}}}{\partial \omega^{\text{L}_1}_{ij}}
+&= (\sum_{k=1}^{2}{\frac{\partial E_{\text{Total}}}{\partial o^{\text{L}_3}_{k}} \frac{\partial o^{\text{L}_3}_{k}}{\partial net^{\text{L}_3}_k} \frac{\partial net^{\text{L}_3}_k}{\partial o^{\text{L}_2}_{j}}})  \cdot \frac{\partial o^{\text{L}_2}_{j}}{\partial net^{\text{L}_2}_j} \cdot \frac{\partial net^{\text{L}_2}_j}{\partial \omega^{\text{L}_1}_{ij}} \\
+&= (\sum_{k=1}^{2}{\delta^{\text{Layer}_2}_{\cdot k} \omega^{\text{L}_2}_{3k}}) \cdot f^{\text{L}_2}_{j}{(net^{\text{L}_2}_j)}(1 - f^{\text{L}_2}_{j}{(net^{\text{L}_2}_j)}) \cdot x_i \\
+&= (\sum_{k=1}^{2}{\delta^{\text{Layer}_2}_{\cdot k} \omega^{\text{L}_2}_{3k}}) \cdot o^{\text{L}_2}_{j}(1 - o^{\text{L}_2}_{j}) \cdot x_i \\
+\end{align}
+
+令~$\delta^{\text{L}_1}_{ij}$~表示~$Layer_1$~层第~$i$~个神经元与~$Layer_2$~层第~$j$~个神经元间权重的梯度项，则
+\begin{align}
+\delta^{\text{L}_1}_{ij} &= (\sum_{k=1}^{2}{\frac{\partial E_{\text{Total}}}{\partial o^{\text{L}_3}_{k}} \frac{\partial o^{\text{L}_3}_{k}}{\partial net^{\text{L}_3}_k} \frac{\partial net^{\text{L}_3}_k}{\partial o^{\text{L}_2}_{j}}})  \cdot \frac{\partial o^{\text{L}_2}_{j}}{\partial net^{\text{L}_2}_j} \\
+&= (\sum_{k=1}^{2}{\delta^{\text{Layer}_2}_{\cdot k} \omega^{\text{L}_2}_{3k}}) \cdot o^{\text{L}_2}_{j}(1 - o^{\text{L}_2}_{j})
+\end{align}
+可以看出，~$Layer_1$~层第~$i$~个神经元与~$Layer_2$~层第~$j$~个神经元间权重的梯度项是与~$i$~无关的，故连接至~$Layer_2$~层第~$j$~个神经元相对应的权重的梯度向均为~$\delta^{\text{L}_1}_{ij}$，用~$\delta^{\text{L}_1}_{\cdot j}$~表示，
+\begin{equation}
+\delta^{\text{L}_1}_{\cdot j} = \delta^{\text{L}_1}_{ij} = (\sum_{k=1}^{2}{\delta^{\text{Layer}_2}_{\cdot k} \omega^{\text{L}_2}_{3k}}) \cdot o^{\text{L}_2}_{j}(1 - o^{\text{L}_2}_{j})
+\end{equation}
+
+则整体误差~$E_{\text{Total}}$~对~$\omega^{\text{L}_1}_{ij}$~的偏导数公式写作：
+\begin{equation}
+\frac{\partial E_{\text{Total}}}{\partial \omega^{\text{L}_1}_{ij}}
+= \delta^{\text{L}_1}_{\cdot j} \cdot x_i
+\end{equation}
+
+则权重~$\omega^{\text{L}_1}_{ij}$~的学习公式为：
+\begin{equation}
+\widehat{\omega}^{\text{L}_1}_{ij} = \omega^{\text{L}_1}_{ij} - \eta \cdot \frac{\partial E_{\text{Total}}}{\partial \omega^{\text{L}_1}_{ij}} 
+= \omega^{\text{L}_1}_{ij} - \eta \cdot \delta^{\text{L}_1}_{\cdot j} \cdot x_i
+\end{equation}
+
+\begin{align}
+\frac{\partial E_{\text{Total}}}{\partial b^{\text{L}_2}_{j}}
+&= (\sum_{k=1}^{2}{\frac{\partial E_{\text{Total}}}{\partial o^{\text{L}_3}_{k}} \frac{\partial o^{\text{L}_3}_{k}}{\partial net^{\text{L}_3}_k} \frac{\partial net^{\text{L}_3}_k}{\partial o^{\text{L}_2}_{j}}})  \cdot \frac{\partial o^{\text{L}_2}_{j}}{\partial net^{\text{L}_2}_j} \cdot \frac{\partial net^{\text{L}_2}_j}{\partial b^{\text{L}_2}_{j}} \\
+&= (\sum_{k=1}^{2}{\delta^{\text{Layer}_2}_{\cdot k} \omega^{\text{L}_2}_{3k}}) \cdot f^{\text{L}_2}_{j}{(net^{\text{L}_2}_j)}(1 - f^{\text{L}_2}_{j}{(net^{\text{L}_2}_j)}) \cdot 1 \\
+&= (\sum_{k=1}^{2}{\delta^{\text{Layer}_2}_{\cdot k} \omega^{\text{L}_2}_{3k}}) \cdot o^{\text{L}_2}_{j}(1 - o^{\text{L}_2}_{j}) \\
+&= \delta^{\text{L}_1}_{\cdot j}
+\end{align}
+
+偏移~$b^{\text{L}_2}_{j}$~的学习公式为：
+\begin{equation}
+\hat{b}^{\text{L}_2}_{j} = b^{\text{L}_2}_{j} - \eta \cdot \frac{\partial E_{\text{Total}}}{\partial b^{\text{L}_2}_{j}} \\
+= b^{\text{L}_2}_{j} - \eta \cdot \delta^{\text{L}_1}_{\cdot j}
+\end{equation}
+
+
+
+
+例如，对于权重~$\omega^{\text{L}_1}_{23}$~的更新学习公式为：
+\begin{align}
+\widehat{\omega}^{\text{L}_1}_{23} &= \omega^{\text{L}_2}_{23} - \eta \cdot \frac{\partial E_{\text{Total}}}{\partial \omega^{\text{L}_1}_{23}} \\
+&= \omega^{\text{L}_2}_{23} - \eta \cdot \big((\sum_{j=1}^{2}{\frac{\partial E_{\text{Total}}}{\partial o^{\text{L}_3}_{j}} \frac{\partial o^{\text{L}_3}_{j}}{\partial net^{\text{L}_3}_j} \frac{\partial net^{\text{L}_3}_j}{\partial o^{\text{L}_2}_{3}}})  \cdot \frac{\partial o^{\text{L}_2}_{3}}{\partial net^{\text{L}_2}_3} \cdot \frac{\partial net^{\text{L}_2}_3}{\partial \omega^{\text{L}_1}_{23}}\big) \\
+&= \omega^{\text{L}_2}_{23} - \eta \cdot (\sum_{j=1}^{2}{\delta^{\text{Layer}_2}_{\cdot j} \omega^{\text{L}_2}_{3j}}) \cdot f^{\text{L}_2}_{3}{(net^{\text{L}_2}_3)}(1 - f^{\text{L}_2}_{3}{(net^{\text{L}_2}_3)}) \cdot x_2 \\
+&= \omega^{\text{L}_2}_{23} - \eta \cdot (\sum_{j=1}^{2}{\delta^{\text{Layer}_2}_{\cdot j} \omega^{\text{L}_2}_{3j}}) \cdot o^{\text{L}_2}_{3}(1 - o^{\text{L}_2}_{3}) \cdot x_2
+\end{align}
+例如，对于偏移~$b^{\text{L}_2}_{3}$~的更新学习公式为：
+\begin{align}
+\hat{b}^{\text{L}_2}_{3} &= b^{\text{L}_3}_{1} - \eta \cdot \frac{\partial E_{\text{Total}}}{\partial b^{\text{L}_2}_{3}} \\
+&= b^{\text{L}_2}_{3} - \eta \cdot \big((\sum_{j=1}^{2}{\frac{\partial E_{\text{Total}}}{\partial o^{\text{L}_3}_{j}} \frac{\partial o^{\text{L}_3}_{j}}{\partial net^{\text{L}_3}_j} \frac{\partial net^{\text{L}_3}_j}{\partial o^{\text{L}_2}_{3}}})  \cdot \frac{\partial o^{\text{L}_2}_{3}}{\partial net^{\text{L}_2}_3} \cdot \frac{\partial net^{\text{L}_2}_3}{\partial b^{\text{L}_2}_{3}}\big) \\
+&=  b^{\text{L}_2}_{3} - \eta \cdot (\sum_{j=1}^{2}{\delta^{\text{Layer}_2}_{\cdot j} \omega^{\text{L}_2}_{3j}}) \cdot f^{\text{L}_2}_{3}{(net^{\text{L}_2}_3)}(1 - f^{\text{L}_2}_{3}{(net^{\text{L}_2}_3)}) \cdot 1 \\
+&= \omega^{\text{L}_2}_{23} - \eta \cdot (\sum_{j=1}^{2}{\delta^{\text{Layer}_2}_{\cdot j} \omega^{\text{L}_2}_{3j}}) \cdot o^{\text{L}_2}_{3}(1 - o^{\text{L}_2}_{3})
+\end{align}
+
+% \begin{equation}
+% \end{equation}
+
+
+
+\end{document}

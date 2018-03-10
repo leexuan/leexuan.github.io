@@ -1,0 +1,28 @@
+%!TEX root = ../IntrusionResponse.tex
+
+\begin{tikzpicture}[recstyle/.style={draw=black,rectangle,line width=1pt, minimum height=0.75cm, minimum width = 3cm,}] 
+  % \draw (-8, 0) to[grid with coordinates] (8, 10);
+
+  \draw [line width = 20pt,blue!10, arrows = {-Stealth[inset=0pt, length=25pt, angle'=60]}] (-5.25,4.5) -- (0,0) -- (5.25,4.5);
+
+  \node (A) at (-5.25,4.5) [recstyle]  {入侵警报预处理};
+  \node (B) at (-3.5,3.0) [recstyle]  {安全态势分析};
+  \node (C) at (-1.75,1.5) [recstyle]  {候选策略集生成};
+  \node (D) at (0.0,0.0)  [recstyle] {响应策略集生成};
+  \node (E) at (1.75,1.5)  [recstyle] {响应策略集实施};
+  \node (F) at (3.5,3.0)  [recstyle] {响应效果评估};
+  \node (G) at (5.25,4.5)  [recstyle] {漏报检测分析};
+
+  \node (H) at (-5.25,6) [draw=black,rectangle, rounded corners=2, minimum height=0.65cm, minimum width = 1.5cm,] {检测};
+  \draw [line width = 6pt,gray!20, arrows = {-Stealth[inset=0pt, length=10pt, angle'=60]}] (-5.25,5.6) -- (-5.25,5);
+
+  \draw[->,black, dashed] (G.west) -- (A.east) node [midway, above, sloped] (){\scalebox{0.75}{调整检测器或者警报置信度水平等}};
+  \draw[->,black, dashed] (G.west) -| (-3,6) -- (H.east);
+  \draw[->,black, dashed] (F.west) -- +(-3.5,0) node [midway, above, sloped] (){\scalebox{0.75}{有效性等}} -- +(-3.5,-1.12);
+
+  \node[fill=gray!20,minimum height=0.65cm, minimum width = 2cm,] at (0,4) {自适应性};
+
+  \node at (-4.6,0.0) [] {\textcolor{red}{安~全~策~略~决~策}};
+  \node at (4.6,0.0) [] {策~略~实~施~及~反~馈};
+
+\end{tikzpicture}
