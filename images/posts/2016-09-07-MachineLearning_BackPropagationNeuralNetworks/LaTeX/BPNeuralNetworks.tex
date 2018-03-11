@@ -39,10 +39,7 @@ o^{\text{L}_i}_{j} = f^{\text{L}_i}_{j}{(net^{\text{L}_i}_j)} = \frac{1}{1+e^{-n
 \begin{equation}
 E_{\text{Total}} = \frac{1}{2}\sum_{j=1}^{2}{(o^{\text{T}}_j - o^{\text{L}_3}_{j})^2} = \frac{1}{2}((o^{\text{T}}_1 - o^{\text{L}_3}_{1})^2 + (o^{\text{T}}_2 - o^{\text{L}_3}_{2})^2)
 \end{equation}
-是~$o^{\text{L}_3}_{1}$~和~$o^{\text{L}_3}_{2}$~的函数
-
-
-
+是关于~$o^{\text{L}_3}_{1}$~和~$o^{\text{L}_3}_{2}$~的函数．
 
 
 \section{$Layer_2$~与~$Layer_3$~间参数调整}
@@ -154,9 +151,6 @@ $Layer_3$~的第~$j$~个神经元的偏移量的梯度为
 = b^{\text{L}_2}_{j} - \eta \cdot \delta^{\text{L}_1}_{\cdot j}
 \end{equation}
 
-
-
-
 例如，对于权重~$\omega^{\text{L}_1}_{23}$~的更新学习公式为：
 \begin{align}
 \widehat{\omega}^{\text{L}_1}_{23} &= \omega^{\text{L}_2}_{23} - \eta \cdot \frac{\partial E_{\text{Total}}}{\partial \omega^{\text{L}_1}_{23}} \\
@@ -171,10 +165,5 @@ $Layer_3$~的第~$j$~个神经元的偏移量的梯度为
 &=  b^{\text{L}_2}_{3} - \eta \cdot (\sum_{j=1}^{2}{\delta^{\text{Layer}_2}_{\cdot j} \omega^{\text{L}_2}_{3j}}) \cdot f^{\text{L}_2}_{3}{(net^{\text{L}_2}_3)}(1 - f^{\text{L}_2}_{3}{(net^{\text{L}_2}_3)}) \cdot 1 \\
 &= \omega^{\text{L}_2}_{23} - \eta \cdot (\sum_{j=1}^{2}{\delta^{\text{Layer}_2}_{\cdot j} \omega^{\text{L}_2}_{3j}}) \cdot o^{\text{L}_2}_{3}(1 - o^{\text{L}_2}_{3})
 \end{align}
-
-% \begin{equation}
-% \end{equation}
-
-
 
 \end{document}
