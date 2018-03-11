@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/W32TeX) (preloaded format=pdflatex 2018.2.6)  10 MAR 2018 20:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/W32TeX) (preloaded format=pdflatex 2018.2.6)  11 MAR 2018 11:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**./IntrusionResponse.tex
-(./IntrusionResponse.tex
+**./BPNeuralNetworks.tex
+(./BPNeuralNetworks.tex
 LaTeX2e <2017-04-15>
 Babel <3.10> and hyphenation patterns for 84 language(s) loaded.
 (c:/texlive/2017/texmf-dist/tex/latex/ctex/ctexart.cls
@@ -1831,7 +1831,7 @@ File: pgfcoreexternal.code.tex 2015/08/29  (rcs-revision 1.22)
 upp_tikzlibraryexternal.code.tex
 (c:/texlive/2017/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldpgfs
 upp_tikzexternalshared.code.tex)))
-\openout4 = `IntrusionResponse.auxlock'.
+\openout4 = `BPNeuralNetworks.auxlock'.
 
 
 (c:/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzli
@@ -1858,8 +1858,8 @@ File: UTF8.enc 2015/04/18 4.8.4
 (c:/texlive/2017/texmf-dist/tex/latex/cjk/texinput/utf8/UTF8.chr
 File: UTF8.chr 2015/04/18 4.8.4
 )
-(./IntrusionResponse.aux)
-\openout1 = `IntrusionResponse.aux'.
+(./BPNeuralNetworks.aux)
+\openout1 = `BPNeuralNetworks.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 7.
 LaTeX Font Info:    ... okay on input line 7.
@@ -2129,7 +2129,7 @@ See the caption package documentation for explanation.
 [4]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 180.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 180.
- (./IntrusionResponse.aux)
+ (./BPNeuralNetworks.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 180.
 Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 180.
 
@@ -2141,12 +2141,12 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 180.
  ) 
 Here is how much of TeX's memory you used:
  49170 strings out of 492995
- 1071736 string characters out of 6136403
- 1241683 words of memory out of 5000000
+ 1071726 string characters out of 6136403
+ 1241679 words of memory out of 5000000
  51744 multiletter control sequences out of 15000+600000
  31259 words of font info for 119 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 64i,13n,96p,10425b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 64i,13n,96p,10424b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
 <c:/WINDOWS/fonts/simsun.ttc><c:/WINDOWS/fonts/simsun.ttc><c:/WINDOWS/fonts/s
 imsun.ttc><c:/WINDOWS/fonts/simsun.ttc><c:/WINDOWS/fonts/simsun.ttc><c:/WINDOWS
 /fonts/simsun.ttc><c:/WINDOWS/fonts/simsun.ttc><c:/WINDOWS/fonts/simsun.ttc><c:
@@ -2177,7 +2177,7 @@ texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/texlive/201
 7/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2017/texmf-dis
 t/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2017/texmf-dist/fonts/t
 ype1/public/amsfonts/cm/cmsy7.pfb>
-Output written on IntrusionResponse.pdf (4 pages, 336279 bytes).
+Output written on BPNeuralNetworks.pdf (4 pages, 336279 bytes).
 PDF statistics:
  391 PDF objects out of 1000 (max. 8388607)
  276 compressed objects within 3 object streams

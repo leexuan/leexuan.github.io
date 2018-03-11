@@ -2,8 +2,8 @@ PWD E:/leexuan.github.io/images/posts/2016-09-07-MachineLearning_BackPropagation
 INPUT c:/texlive/2017/texmf.cnf
 INPUT c:/texlive/2017/texmf-dist/web2c/texmf.cnf
 INPUT c:/texlive/2017/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT ./IntrusionResponse.tex
-OUTPUT IntrusionResponse.log
+INPUT ./BPNeuralNetworks.tex
+OUTPUT BPNeuralNetworks.log
 INPUT c:/texlive/2017/texmf-dist/tex/latex/ctex/ctexart.cls
 INPUT c:/texlive/2017/texmf-dist/tex/latex/ctex/ctexart.cls
 INPUT c:/texlive/2017/texmf-dist/tex/latex/l3kernel/expl3.sty
@@ -432,7 +432,7 @@ INPUT c:/texlive/2017/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsold
 INPUT c:/texlive/2017/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldpgfsupp_tikzlibraryexternal.code.tex
 INPUT c:/texlive/2017/texmf-dist/tex/latex/oberdiek/atveryend.sty
 INPUT c:/texlive/2017/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldpgfsupp_tikzexternalshared.code.tex
-OUTPUT IntrusionResponse.auxlock
+OUTPUT BPNeuralNetworks.auxlock
 INPUT c:/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryintersections.code.tex
 INPUT c:/texlive/2017/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryintersections.code.tex
 INPUT c:/texlive/2017/texmf-dist/tex/generic/pgf/libraries/pgflibraryintersections.code.tex
@@ -446,9 +446,9 @@ INPUT c:/texlive/2017/texmf-dist/tex/latex/cjk/texinput/utf8/UTF8.enc
 INPUT c:/texlive/2017/texmf-dist/tex/latex/cjk/texinput/utf8/UTF8.enc
 INPUT c:/texlive/2017/texmf-dist/tex/latex/cjk/texinput/utf8/UTF8.chr
 INPUT c:/texlive/2017/texmf-dist/tex/latex/cjk/texinput/utf8/UTF8.chr
-INPUT IntrusionResponse.aux
-INPUT IntrusionResponse.aux
-OUTPUT IntrusionResponse.aux
+INPUT BPNeuralNetworks.aux
+INPUT BPNeuralNetworks.aux
+OUTPUT BPNeuralNetworks.aux
 INPUT c:/texlive/2017/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT c:/texlive/2017/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT c:/texlive/2017/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
@@ -461,7 +461,7 @@ INPUT c:/texlive/2017/texmf-dist/tex/latex/hyperref/nameref.sty
 INPUT c:/texlive/2017/texmf-dist/tex/latex/hyperref/nameref.sty
 INPUT c:/texlive/2017/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 INPUT c:/texlive/2017/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
-OUTPUT IntrusionResponse.pdf
+OUTPUT BPNeuralNetworks.pdf
 INPUT c:/texlive/2017/texmf-dist/tex/latex/ctex/fd/c70rm.fd
 INPUT c:/texlive/2017/texmf-dist/tex/latex/ctex/fd/c70rm.fd
 INPUT c:/texlive/2017/texmf-dist/fonts/tfm/zhmetrics/unisong/unisong59.tfm
@@ -574,7 +574,7 @@ INPUT c:/texlive/2017/texmf-dist/fonts/tfm/zhmetrics/unisong/unisong4f.tfm
 INPUT c:/texlive/2017/texmf-dist/fonts/tfm/zhmetrics/unisong/unisong5f.tfm
 INPUT c:/texlive/2017/texmf-dist/fonts/tfm/zhmetrics/unisong/unisong90.tfm
 INPUT c:/texlive/2017/texmf-dist/fonts/tfm/zhmetrics/unisong/unisong73.tfm
-INPUT IntrusionResponse.aux
+INPUT BPNeuralNetworks.aux
 INPUT c:/WINDOWS/fonts/simsun.ttc
 INPUT c:/WINDOWS/fonts/simsun.ttc
 INPUT c:/WINDOWS/fonts/simsun.ttc
