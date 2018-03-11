@@ -175,6 +175,8 @@ $$\begin{equation}\label{eqn:Self-updating formular for weights between L1 and L
 = \omega^{\text{L}_1}_{ij} - \eta \cdot \delta^{\text{L}_1}_{\cdot j} \cdot x_i
 \end{equation}$$
 
+整体误差&nbsp;$$E_{\text{Total}}$$&nbsp;对&nbsp;$$b^{\text{L}_2}_{j}$$&nbsp;的偏导数公式写作：
+
 $$\begin{align}
 \frac{\partial E_{\text{Total}}}{\partial b^{\text{L}_2}_{j}}
 &= (\sum_{k=1}^{2}{\frac{\partial E_{\text{Total}}}{\partial o^{\text{L}_3}_{k}} \frac{\partial o^{\text{L}_3}_{k}}{\partial net^{\text{L}_3}_k} \frac{\partial net^{\text{L}_3}_k}{\partial o^{\text{L}_2}_{j}}})  \cdot \frac{\partial o^{\text{L}_2}_{j}}{\partial net^{\text{L}_2}_j} \cdot \frac{\partial net^{\text{L}_2}_j}{\partial b^{\text{L}_2}_{j}} \\
