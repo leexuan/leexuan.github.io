@@ -24,7 +24,7 @@ BP&nbsp;神经网络的计算包括两个过程：正向计算和反向计算。
 ![](/images/posts/2016-09-07-MachineLearning_BackPropagationNeuralNetworks/BPDemo.png){:height="450px" width="900px"}
 
 
-如图所示三层神经网络：输入层&nbsp;$Layer_1$、隐含层&nbsp;$Layer_2$、输出层&nbsp;$Layer_3$．输入层包括三个神经元，即输入为&nbsp;$\boldsymbol{x}=\lbrace x_1,x_2,x_3 \rbrace$，样本数据集为&nbsp;$$\mathcal{D}=\lbrace (\boldsymbol{x}_i,y_i)\rbrace$$，目标输出为&nbsp;$$o^{\text{T}}_1$$&nbsp;和&nbsp;$$o^{\text{T}}_2$$．$$\omega^{\text{L}_k}_{ij}$$&nbsp;为第&nbsp;$$k-1$$&nbsp;层的第&nbsp;$$i$$&nbsp;个神经元到第&nbsp;$$k$$&nbsp;层的第&nbsp;$$j$$&nbsp;个神经元之间的权重．$$\boldsymbol{b}^{\text{L}_k}=\{b^{\text{L}_k}_{i}\}$$&nbsp;为第&nbsp;$$k$$&nbsp;层神经元偏移量集合，$$b^{\text{L}_k}_{i}$$&nbsp;为第&nbsp;$$k$$&nbsp;层第&nbsp;$$i$$&nbsp;个神经元的偏移量．$$net^{\text{L}_k}_{i}$$&nbsp;表示第&nbsp;$$k$$&nbsp;层网络的第&nbsp;$$i$$&nbsp;个神经元的输入，$$o^{\text{L}_k}_{i}$$&nbsp;表示第&nbsp;$$k$$&nbsp;层网络的第&nbsp;$$i$$&nbsp;个神经元的输出，$$f^{\text{L}_k}_{i}(\cdot)$$&nbsp;表示第&nbsp;$k$&nbsp;层网络的第&nbsp;$i$&nbsp;个神经元的激活函数．
+如图所示三层神经网络：输入层&nbsp;$Layer_1$、隐含层&nbsp;$Layer_2$、输出层&nbsp;$Layer_3$．输入层包括三个神经元，即输入为&nbsp;$\boldsymbol{x}=\lbrace x_1,x_2,x_3 \rbrace$，输出为&nbsp;$\boldsymbol{y}=\lbrace o_1,o_2 \rbrace$．样本数据集为&nbsp;$$\mathcal{D}=\lbrace (\boldsymbol{x}_i,\boldsymbol{y}_i)\rbrace_{i=1}^{m}$$，$$\boldsymbol{x}_i \in \mathbb{R}^3$$，$$\boldsymbol{y}_i \in \mathbb{R}^2$$，目标输出为&nbsp;$$o^{\text{T}}_1$$&nbsp;和&nbsp;$$o^{\text{T}}_2$$．$$\omega^{\text{L}_k}_{ij}$$&nbsp;为第&nbsp;$$k-1$$&nbsp;层的第&nbsp;$$i$$&nbsp;个神经元到第&nbsp;$$k$$&nbsp;层的第&nbsp;$$j$$&nbsp;个神经元之间的权重．$$\boldsymbol{b}^{\text{L}_k}=\{b^{\text{L}_k}_{i}\}$$&nbsp;为第&nbsp;$$k$$&nbsp;层神经元偏移量集合，$$b^{\text{L}_k}_{i}$$&nbsp;为第&nbsp;$$k$$&nbsp;层第&nbsp;$$i$$&nbsp;个神经元的偏移量．$$net^{\text{L}_k}_{i}$$&nbsp;表示第&nbsp;$$k$$&nbsp;层网络的第&nbsp;$$i$$&nbsp;个神经元的输入，$$o^{\text{L}_k}_{i}$$&nbsp;表示第&nbsp;$$k$$&nbsp;层网络的第&nbsp;$$i$$&nbsp;个神经元的输出，$$f^{\text{L}_k}_{i}(\cdot)$$&nbsp;表示第&nbsp;$k$&nbsp;层网络的第&nbsp;$i$&nbsp;个神经元的激活函数．
 
 假设采用常见的激活函数&nbsp;sigmoid&nbsp;函数：
 \begin{equation}
@@ -49,7 +49,7 @@ net^{\text{L}_3}_{j} = \sum_{i=1}^{3}{\omega^{\text{L}_2}_{ij} \times o^{\text{L
 
 第&nbsp;$$\text{L}_i$$&nbsp;层的第&nbsp;$$j$$&nbsp;个神经元的输出：
 
- $$\begin{equation}
+ $$\begin{equation}\label{eqn:output of BP neural networks}
  o^{\text{L}_i}_{j} = f^{\text{L}_i}_{j}{(net^{\text{L}_i}_j)} = \frac{1}{1+e^{-net^{\text{L}_i}_j}}
  \end{equation}$$
 
@@ -61,7 +61,11 @@ E_{\text{Total}} = \frac{1}{2}\sum_{j=1}^{2}{(o^{\text{T}}_j - o^{\text{L}_3}_{j
 
 总误差为是关于&nbsp;$$o^{\text{L}_3}_{1}$$&nbsp;和&nbsp;$$o^{\text{L}_3}_{2}$$&nbsp;的函数．
 
+BP&nbsp;算法基于梯度下降（gradient descent）策略，以目标的负梯度方向对参数进行调整．它是一个迭代学习算法，在迭代的每一轮中采用广义的感知机学习 规则对参数进行更新估计，任一参数&nbsp;$v$&nbsp;的更新估计式为
 
+$$\begin{equation}
+v \leftarrow v + \Delta v
+\end{equation}$$
 
 #### **A．$Layer_2$&nbsp;与&nbsp;$Layer_3$&nbsp;间参数调整**
 调整&nbsp;$Layer_2$&nbsp;与&nbsp;$Layer_3$&nbsp;间的权重&nbsp;$$\omega^{\text{L}_2}_{ij}$$．总误差对&nbsp;$$\omega^{\text{L}_2}_{ij}$$&nbsp;的偏导数为：
@@ -81,7 +85,7 @@ $$\begin{equation}
 
 可以看出，&nbsp;$Layer_2$&nbsp;层第&nbsp;$i$&nbsp;个神经元与&nbsp;$Layer_3$&nbsp;层第&nbsp;$j$&nbsp;个神经元间权重的梯度项是与&nbsp;$i$&nbsp;无关的，故连接至&nbsp;$Layer_3$&nbsp;层第&nbsp;$j$&nbsp;个神经元相对应的权重的梯度项均为&nbsp;$$\delta^{\text{L}_2}_{ij}$$，用&nbsp;$$\delta^{\text{L}_2}_{\cdot j}$$&nbsp;表示，
 
-$$\begin{equation}
+$$\begin{equation}\label{eqn:Gradient computation between L2 and L3}
 \delta^{\text{L}_2}_{\cdot j} = \delta^{\text{L}_2}_{ij} = -(o^{\text{T}}_{j} - o^{\text{L}_3}_{j}) \cdot o^{\text{L}_3}_{j}(1 - o^{\text{L}_3}_{j})
 \end{equation}$$
 
@@ -157,7 +161,7 @@ $$\begin{align}
 
 可以看出，&nbsp;$Layer_1$&nbsp;层第&nbsp;$i$&nbsp;个神经元与&nbsp;$Layer_2$&nbsp;层第&nbsp;$j$&nbsp;个神经元间权重的梯度项是与&nbsp;$i$&nbsp;无关的，故连接至&nbsp;$Layer_2$&nbsp;层第&nbsp;$j$&nbsp;个神经元相对应的权重的梯度向均为&nbsp;$$\delta^{\text{L}_1}_{ij}$$，用&nbsp;$$\delta^{\text{L}_1}_{\cdot j}$$&nbsp;表示，
 
-$$\begin{equation}
+$$\begin{equation}\label{eqn:Gradient computation between L1 and L2}
 \delta^{\text{L}_1}_{\cdot j} = \delta^{\text{L}_1}_{ij} = (\sum_{k=1}^{2}{\delta^{\text{Layer}_2}_{\cdot k} \omega^{\text{L}_2}_{3k}}) \cdot o^{\text{L}_2}_{j}(1 - o^{\text{L}_2}_{j})
 \end{equation}$$
 
@@ -211,8 +215,38 @@ $$\begin{align}\label{eq1:description}
 &= b^{\text{L}_2}_{3} - \eta \cdot (\sum_{j=1}^{2}{\delta^{\text{Layer}_2}_{\cdot j} \omega^{\text{L}_2}_{3j}}) \cdot o^{\text{L}_2}_{3}(1 - o^{\text{L}_2}_{3}) \nonumber
 \end{align}$$
 
+需要指出的是学习率&nbsp;$\eta \in (0,1)$&nbsp;控制着算法每一轮迭代中的更新步长，若太多则容易震荡；太小则收敛速录又会过慢．并且公式（\ref{eqn:Self-updating formular for weights between L2 and L3}）、（\ref{eqn:Self-updating formular for bias in L3}）、（\ref{eqn:Self-updating formular for weights between L1 and L2}）和（\ref{eqn:Self-updating formular for bias in L2}）中的学习率也未必相等．
+
+#### **C．误差反向传播算法**
 结合上述公式，根据样本参数计算总体误差；根据总体误差，更新神经网络参数；这样，实现信号的正向传递，误差的反向传播，参数的自适应．如此，不停的进行迭代直至满足停止条件．
 
+具体而言，BP&nbsp;算法执行以下操作：先将输入示例提供给输入层神经元，然后逐层将信号前传，直到产生输出层的结果；然后计算输出层的误差，再将误差逆向传播至隐层神经元，最后根据隐层神经元的误差来别连接权和偏移进行调整．该法代过程循环进行，直到达到某些停止条件为止，例如训练误差己达到一个很小的值．具体操作流程如下所示．
+
+------
+ **输入**：训练集 $$\mathcal{D}=\lbrace (\boldsymbol{x}_i,\boldsymbol{y}_i)\rbrace_{i=1}^{m}$$
+
+　　　学习率&nbsp;$\eta$
+
+**过程**：
+
+1. 在&nbsp;$(0,1)$&nbsp;范围内随机初始化网络中所有连接权重和偏移量
+2. **repeat**
+3. 　　**for all**&nbsp;$$(\boldsymbol{x}_k,\boldsymbol{y}_k) \in \mathcal{D}$$&nbsp;**do**
+4. 　　　　根据当前参数和式（\ref{eqn:output of BP neural networks}）计算当前样本的输出$$o^{\text{L}_3}_{j}$$
+5. 　　　　根据式（\ref{eqn:Gradient computation between L2 and L3}）计算输出层神经元的梯度项&nbsp;$$\delta^{\text{L}_2}_{\cdot j}$$&nbsp;
+6. 　　　　根据式（\ref{eqn:Gradient computation between L1 and L2}）计算隐含层各神经元的梯度项&nbsp;$$\delta^{\text{L}_1}_{\cdot j}$$
+7. 　　　　根据式（\ref{eqn:Self-updating formular for weights between L2 and L3}）和（\ref{eqn:Self-updating formular for bias in L3}）更新连接权重&nbsp;$$\omega^{\text{L}_3}_{ij}$$&nbsp;和偏移&nbsp;$$b^{\text{L}_3}_{j}$$
+8. 　　　　根据式（\ref{eqn:Self-updating formular for weights between L1 and L2}）和（\ref{eqn:Self-updating formular for bias in L2}）更新连接权重$$\omega^{\text{L}_2}_{ij}$$&nbsp;和偏移&nbsp;$$b^{\text{L}_2}_{j}$$&nbsp;
+8. 　　**end for**
+9. **until**&nbsp;达到停止条件
+10. **输出**：连接权重与偏移量确定的多层前馈神经网络
+
+------
+
+### 扩展
+上面介绍为“标准&nbsp;BP&nbsp;算法”，每次仅针对一个训练样例更新权重和偏移，也就是说，算法的更新规则是基于单个的样本的误差推导而得．
+
+如果类似地推导出基于累积误差最小化的更新规则，就得到了累积误差逆传播（accumulated error backpropagation）算法．累积&nbsp;BP&nbsp;算法与标准&nbsp;BP&nbsp;算法都很常用．一般来说，标准&nbsp;BP&nbsp;算法每次更新只针对单个样例，参数更新得非常频繁，而且对不同样例进行更新的效果可能出现“抵消”现象．因此，为了达到同样的累积误差极小点，标准&nbsp;BP&nbsp;算法往往需进行更多次数的法代．累积&nbsp;BP&nbsp;算法直接针对累积误差最小化，它在读取整个训练集&nbsp;$$\mathcal{D}$$&nbsp;一遍后才对参数进行更新，其参数更新的频率低得多．但在很多任务中，累积误差下降到一定程度之后，进一步下降会非常缓慢，这时标准&nbsp;BP&nbsp;往往会更快获得较好的解，尤其是在训练集&nbsp;$$\mathcal{D}$$&nbsp;非常大时更明显.
 
 <!--
 -->
