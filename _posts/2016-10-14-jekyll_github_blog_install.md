@@ -56,21 +56,42 @@ jekyll serve  //开启服务器，可以按 Ctrl+c 停止
 ### Ruby 版本对模拟本地博客环境的影响
 利用不同版本的 Ruby 搭建了的 Jekyll 模拟本地环境，当用于模拟同一套博客代码时，可能出现一些问题：
 我在以前的一台电脑上采用的稍低版本（具体版本不记得了）的 Ruby 搭建该博客环境，后提交 github。由于需要，在另一台计算机上搭建同样的环境，由于此次搭建仍然采用最新的 Ruby (与之前的版本不一样)，但是在此环境下，模拟从 github 上 clone下的博客代码，运行：
+
 ```
 jekyll serve
 ```
-出现如下图所示错误：
+如果出现如下图所示错误：
 
 ![](/images/posts/JekyllGithub_20161020/ProblemDuetoVersion.png)
 其解决方法如下：
 命令行输入以下代码：
+
 ```
 bundle --full-index
 ```
 如下图所示：
 ![](/images/posts/JekyllGithub_20161020/Step1.png)
 
+如果出现如下图所示错误：
+
+![](/images/posts/JekyllGithub_20161020/Problem_public_suffix.png)
+
+其解决方法是执行以下代码：
+
+```
+bundle install –path vendor/cache
+```
+
+或者
+
+```
+bundle install –no-deployment
+```
+
+
+
 再次运行
+
 ```
 jekyll serve
 ```
@@ -78,6 +99,7 @@ jekyll serve
 ![](/images/posts/JekyllGithub_20161020/Step2.png)
 
 然后，依据提示，输入：
+
 ```
 bundle exec jekyll serve
 ```
